@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B171NGU3 — B2 Upper-Intermediate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0f0f0f;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .back {
+      position: fixed;
+      top: 2rem;
+      left: 2rem;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #333;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back:hover { color: #e8e2d9; }
+    .level-label {
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+    .level-title {
+      font-family: 'Lora', serif;
+      font-size: 5rem;
+      font-weight: 400;
+      color: #e8e2d9;
+      letter-spacing: -3px;
+      margin-bottom: 0.5rem;
+    }
+    .level-name {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 4rem;
+    }
+    .construction {
+      font-family: 'Lora', serif;
+      font-size: 1rem;
+      color: #2a2a2a;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <a class="back" href="index.html">← volver</a>
+  <div class="level-label">Nivel</div>
+  <div class="level-title">B2</div>
+  <div class="level-name">Upper-Intermediate</div>
+  <div class="construction">Página en construcción</div>
+</body>
+</html>
