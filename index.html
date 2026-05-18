@@ -42,9 +42,22 @@
       text-decoration: none;
       letter-spacing: -3px;
       transition: color 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .level-link:hover { color: #ffffff; }
+
+    .level-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #444;
+      font-weight: 300;
+      margin-top: -1rem;
+    }
 
     .divider {
       width: 1px;
@@ -66,19 +79,30 @@
   <div class="site-name">B171NGU3</div>
 
   <div class="levels">
-    <a class="level-link" href="a1.html">A1<span class="level-name">Beginner</span></a>
+    <a class="level-link" href="a1.html">
+      A1
+      <span class="level-name">Beginner</span>
+    </a>
     <div class="divider"></div>
-        
-    <a class="level-link" href="a1.html">A2</a>
+    <a class="level-link" href="a2.html">
+      A2
+      <span class="level-name">Elementary</span>
+    </a>
     <div class="divider"></div>
-    
-    <a class="level-link" href="b1.html">B1</a>
+    <a class="level-link" href="b1.html">
+      B1
+      <span class="level-name">Intermediate</span>
+    </a>
     <div class="divider"></div>
-
-    <a class="level-link" href="b1.html">B2</a>
+    <a class="level-link" href="b2.html">
+      B2
+      <span class="level-name">Upper-Intermediate</span>
+    </a>
     <div class="divider"></div>
-    
-    <a class="level-link" href="c1.html">C1</a>
+    <a class="level-link" href="c1.html">
+      C1
+      <span class="level-name">Advanced</span>
+    </a>
   </div>
 
   <div class="tagline">elige tu nivel · empieza a leer</div>
