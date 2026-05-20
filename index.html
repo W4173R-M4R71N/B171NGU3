@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B171NGU3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0f0f0f;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      color: #e8e2d9;
+      padding: 3rem 2rem;
+    }
+
+    /* SITE NAME */
+    .site-name {
+      font-family: 'Lora', serif;
+      font-size: 0.85rem;
+      letter-spacing: 6px;
+      color: #e8e2d9;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+
+    /* LANGUAGE SELECTORS */
+    .selectors {
+      display: flex;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .selector-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .selector-label {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #e8e2d9;
+    }
+    .selector-options {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .lang-btn {
+      padding: 5px 14px;
+      border-radius: 20px;
+      border: 1px solid #2a2a2a;
+      background: none;
+      font-size: 0.75rem;
+      font-family: 'DM Sans', sans-serif;
+      color: #e8e2d9;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+    .lang-btn:hover { border-color: #e8e2d9; }
+    .lang-btn.active { background: #e8e2d9; color: #0f0f0f; border-color: #e8e2d9; }
+    .lang-btn.coming-soon {
+      color: #333;
+      border-color: #1a1a1a;
+      cursor: default;
+      font-size: 0.65rem;
+      letter-spacing: 0.5px;
+    }
+    .lang-btn.coming-soon:hover { border-color: #1a1a1a; }
+
+    /* DIVIDER */
+    .section-divider {
+      width: 1px;
+      height: 40px;
+      background: #1a1a1a;
+      margin-bottom: 3rem;
+    }
+
+    /* LEVELS */
+    .levels {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .level-link {
+      font-family: 'Lora', serif;
+      font-size: 5rem;
+      font-weight: 400;
+      color: #e8e2d9;
+      text-decoration: none;
+      letter-spacing: -3px;
+      transition: color 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .level-link:hover { color: #ffffff; }
+    .level-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #e8e2d9;
+      font-weight: 300;
+      margin-top: -0.75rem;
+    }
+    .divider {
+      width: 1px;
+      height: 80px;
+      background: #1a1a1a;
+    }
+
+    /* TAGLINE */
+    .tagline {
+      font-size: 0.7rem;
+      color: #e8e2d9;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+    }
+
+    /* LIKES */
+    .likes-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .like-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 7px 18px;
+      color: #e8e2d9;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 0.2s;
+    }
+    .like-btn:hover { border-color: #e8e2d9; }
+    .like-btn.liked { background: #1a1a1a; border-color: #e8e2d9; }
+    .like-icon { font-size: 1rem; }
+    .like-count { font-size: 0.75rem; color: #e8e2d9; }
+
+    /* DONATE */
+    .donate-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: 1px solid #2a2a2a;
+      border-radius: 20px;
+      padding: 7px 18px;
+      color: #e8e2d9;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      cursor: pointer;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .donate-btn:hover { border-color: #e8e2d9; }
+
+    /* FOOTER */
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.6rem;
+      letter-spacing: 3px;
+      color: #e8e2d9;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="site-name">B171NGU3</div>
+
+  <!-- LANGUAGE SELECTORS -->
+  <div class="selectors">
+    <div class="selector-group">
+      <div class="selector-label">I want to read in</div>
+      <div class="selector-options">
+        <button class="lang-btn active" onclick="selectRead(this)">English</button>
+        <button class="lang-btn coming-soon">Français · soon</button>
+        <button class="lang-btn coming-soon">Português · soon</button>
+      </div>
+    </div>
+    <div class="selector-group">
+      <div class="selector-label">Help me understand in</div>
+      <div class="selector-options">
+        <button class="lang-btn active" onclick="selectHelp(this)">Español</button>
+        <button class="lang-btn coming-soon">English · soon</button>
+        <button class="lang-btn coming-soon">Français · soon</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- LEVELS -->
+  <div class="levels">
+    <a class="level-link" href="a1.html">
+      A1
+      <span class="level-name">Beginner</span>
+    </a>
+    <div class="divider"></div>
+    <a class="level-link" href="a2.html">
+      A2
+      <span class="level-name">Elementary</span>
+    </a>
+    <div class="divider"></div>
+    <a class="level-link" href="b1.html">
+      B1
+      <span class="level-name">Intermediate</span>
+    </a>
+    <div class="divider"></div>
+    <a class="level-link" href="b2.html">
+      B2
+      <span class="level-name">Upper-Intermediate</span>
+    </a>
+    <div class="divider"></div>
+    <a class="level-link" href="c1.html">
+      C1
+      <span class="level-name">Advanced</span>
+    </a>
+  </div>
+
+  <div class="tagline">choose your level · start reading</div>
+
+  <!-- LIKES & DONATE -->
+  <div class="likes-row">
+    <button class="like-btn" id="likeBtn" onclick="toggleLike()">
+      <span class="like-icon">♡</span>
+      <span class="like-count" id="likeCount">0</span>
+    </button>
+    <a class="donate-btn" href="https://buymeacoffee.com" target="_blank">
+      ☕ Buy us a coffee
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    C74U43 & W4173R<br>
+    734RN1NG 4N4 H37P1NG
+  </div>
+
+  <script>
+    // LANGUAGE SELECTORS
+    function selectRead(btn) {
+      btn.closest('.selector-options').querySelectorAll('.lang-btn:not(.coming-soon)').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+    function selectHelp(btn) {
+      btn.closest('.selector-options').querySelectorAll('.lang-btn:not(.coming-soon)').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // LIKES
+    let liked = localStorage.getItem('b171ngu3_liked') === 'true';
+    let count = parseInt(localStorage.getItem('b171ngu3_likes') || '0');
+    updateLike();
+
+    function toggleLike() {
+      liked = !liked;
+      count = liked ? count + 1 : count - 1;
+      localStorage.setItem('b171ngu3_liked', liked);
+      localStorage.setItem('b171ngu3_likes', count);
+      updateLike();
+    }
+
+    function updateLike() {
+      document.getElementById('likeCount').textContent = count;
+      const btn = document.getElementById('likeBtn');
+      btn.querySelector('.like-icon').textContent = liked ? '♥' : '♡';
+      btn.classList.toggle('liked', liked);
+    }
+  </script>
+
+</body>
+</html>
