@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alice in Wonderland — Chapter 2 — B171NGU3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0f0f0f; color: #e8e2d9; font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
+    .header { position: fixed; top: 0; left: 0; right: 0; height: 50px; background: #0f0f0f; border-bottom: 1px solid #1a1a1a; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; z-index: 200; }
+    .header-left { display: flex; align-items: center; gap: 1.2rem; }
+    .btn-nav { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: #e8e2d9; text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 0.3rem; }
+    .btn-nav:hover { color: #ffffff; }
+    .nav-sep { color: #2a2a2a; font-size: 0.8rem; }
+    .header-title { font-family: 'Lora', serif; font-size: 0.85rem; color: #e8e2d9; letter-spacing: 2px; }
+    .header-right { display: flex; align-items: center; gap: 1rem; }
+    .header-level { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: #e8e2d9; }
+    .chapters-btn { background: none; border: 1px solid #2a2a2a; border-radius: 5px; color: #e8e2d9; cursor: pointer; padding: 4px 10px; font-size: 1rem; line-height: 1; transition: all 0.2s; }
+    .chapters-btn:hover { border-color: #e8e2d9; }
+    .chapters-menu { position: fixed; top: 50px; right: 2rem; background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 0.5rem; z-index: 300; display: none; min-width: 260px; }
+    .chapters-menu.open { display: block; }
+    .chapters-menu-title { font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: #e8e2d9; padding: 0.5rem 0.75rem; border-bottom: 1px solid #1a1a1a; margin-bottom: 0.5rem; }
+    .chapter-item { display: block; padding: 0.6rem 0.75rem; font-size: 0.8rem; color: #e8e2d9; text-decoration: none; border-radius: 5px; transition: background 0.15s; letter-spacing: 0.5px; }
+    .chapter-item:hover { background: #1e1e1e; }
+    .chapter-item.current { background: #1e1e1e; color: #ffffff; }
+    .es-strip { position: fixed; top: 50px; left: 0; right: 0; height: 48px; background: #0a0a0a; border-bottom: 1px solid #1a1a1a; display: none; align-items: center; overflow: hidden; z-index: 99; }
+    .es-strip.visible { display: flex; }
+    .es-track { display: flex; align-items: center; white-space: nowrap; transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); padding: 0 50%; }
+    .es-word { font-family: 'Lora', serif; font-size: 0.85rem; color: #e8e2d9; padding: 2px 3px; border-radius: 3px; transition: color 0.2s; white-space: nowrap; }
+    .es-word.highlight { color: #ffffff; background: #1a1a1a; }
+    .main { padding-top: 50px; min-height: 100vh; }
+    .main.strip-visible { padding-top: 98px; }
+    .chapter { max-width: 720px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+    .chapter-label { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; color: #e8e2d9; margin-bottom: 1rem; }
+    .chapter-title { font-family: 'Lora', serif; font-size: 1.8rem; font-weight: 400; color: #e8e2d9; margin-bottom: 0.3rem; line-height: 1.2; }
+    .chapter-subtitle { font-family: 'Lora', serif; font-size: 1rem; font-style: italic; color: #e8e2d9; margin-bottom: 3rem; }
+    .chapter-divider { width: 40px; height: 1px; background: #1e1e1e; margin-bottom: 2rem; }
+    .hint { text-align: center; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: #e8e2d9; margin-bottom: 3rem; opacity: 0.4; }
+    .para { font-family: 'Lora', serif; font-size: 1.1rem; line-height: 1.9; color: #e8e2d9; margin-bottom: 1.8rem; }
+    .w { cursor: pointer; border-radius: 2px; transition: background 0.15s, color 0.15s; position: relative; }
+    .w:hover { background: #1a1a1a; }
+    .w.active { background: #2a2a2a; color: #ffffff; }
+    .tooltip { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: #1a1a1a; border: 1px solid #2a2a2a; color: #e8e2d9; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; padding: 4px 10px; border-radius: 4px; white-space: nowrap; pointer-events: none; z-index: 200; letter-spacing: 0.5px; }
+    .tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 4px solid transparent; border-top-color: #2a2a2a; }
+    .chapter-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #1a1a1a; }
+    .nav-btn { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: #e8e2d9; text-decoration: none; transition: color 0.2s; padding: 8px 0; }
+    .nav-btn:hover { color: #ffffff; }
+    .nav-btn.hidden { visibility: hidden; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <a class="btn-nav" href="index.html">⌂ Main</a>
+    <span class="nav-sep">·</span>
+    <a class="btn-nav" href="b1.html">← Return</a>
+  </div>
+  <div class="header-title">Alice in Wonderland</div>
+  <div class="header-right">
+    <div class="header-level">B1 · Intermediate</div>
+    <button class="chapters-btn" onclick="toggleMenu()" title="All chapters">☰</button>
+  </div>
+</div>
+
+<div class="chapters-menu" id="chaptersMenu">
+  <div class="chapters-menu-title">Chapters</div>
+  <a class="chapter-item" href="alicia-ch1.html">Chapter 1 — Down the Rabbit Hole</a>
+  <a class="chapter-item current" href="alicia-ch2.html">Chapter 2 — The Pool of Tears</a>
+  <a class="chapter-item" href="alicia-ch3.html">Chapter 3 — A Caucus Race</a>
+  <a class="chapter-item" href="alicia-ch4.html">Chapter 4 — The Rabbit Sends a Little Bill</a>
+  <a class="chapter-item" href="alicia-ch5.html">Chapter 5 — Advice from a Caterpillar</a>
+</div>
+
+<div class="es-strip" id="esStrip">
+  <div class="es-track" id="esTrack"></div>
+</div>
+
+<div class="main" id="main">
+  <div class="chapter">
+    <div class="chapter-label">Chapter 2 of 5</div>
+    <div class="chapter-title">The Pool of Tears</div>
+    <div class="chapter-subtitle">El lago de lágrimas</div>
+    <div class="chapter-divider"></div>
+    <div class="hint">Click on a word to follow the context in Spanish · Double click for instant translation</div>
+
+    <div id="textEN"></div>
+
+    <div class="chapter-nav">
+      <a class="nav-btn" href="alicia-ch1.html">← Previous chapter</a>
+      <a class="nav-btn" href="alicia-ch3.html">Next chapter →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const PARAGRAPHS = [
+  [["Curiouser","Curioser"],["and","y"],["curiouser","curioser"],["cried","exclamó"],["Alice","Alicia"],["she","estaba"],["was","tan"],["so","sorprendida"],["much","que"],["surprised","por un momento"],["that","olvidó"],["for","completamente"],["the","cómo"],["moment","hablar"],["she","bien"],["quite","en inglés"],["forgot","—"],["how","—"],["to","—"],["speak","—"],["good","—"],["English","—"]],
+  [["Now","Ahora"],["I","me"],["am","estoy"],["opening","abriendo"],["out","como"],["like","el"],["the","telescopio"],["largest","más grande"],["telescope","que"],["that","existió"],["ever","jamás"],["was","adiós"],["Good","pies"],["bye","—"],["feet","—"]],
+  [["for","pues"],["when","cuando"],["she","miró"],["looked","hacia"],["down","sus pies"],["at","parecían"],["her","estar"],["feet","casi"],["they","fuera"],["seemed","de vista"],["to","se"],["be","alejaban"],["almost","tanto"],["out","—"],["of","—"],["sight","—"],["they","—"],["were","—"],["getting","—"],["so","—"],["far","—"],["away","—"]],
+  [["Oh","Oh"],["my","mis"],["poor","pobres"],["little","piececitos"],["feet","me pregunto"],["I","quién"],["wonder","os"],["who","pondrá"],["will","las"],["put","medias"],["on","y los zapatos"],["your","ahora"],["shoes","pues yo"],["and","desde luego"],["stockings","no podré"],["for","hacerlo"],["you","—"],["now","—"],["dears","—"]],
+  [["I","Yo"],["shall","me"],["be","ocuparé"],["a","de eso"],["great","cuando"],["deal","sea mayor"],["too","—"],["far","—"],["off","—"],["to","—"],["trouble","—"],["myself","—"],["about","—"],["you","—"]],
+  [["She","Seguía"],["was","creciendo"],["still","y pronto"],["growing","tuvo"],["and","que arrodillarse"],["very","en el suelo"],["soon","en otro momento"],["had","ni siquiera"],["to","cabía"],["kneel","en la habitación"],["on","y trató"],["the","de tumbarse"],["floor","con un codo"],["in","apoyado"],["another","en la puerta"],["moment","y el otro"],["there","brazo"],["was","alrededor"],["not","de su cabeza"],["even","—"],["room","—"],["for","—"],["this","—"]],
+  [["Alice","Alicia"],["soon","pronto"],["came","llegó"],["to","a"],["the","la conclusión"],["conclusion","de que"],["that","era"],["it","una"],["was","criatura"],["a","muy curiosa"],["very","para"],["curious","estar aquí"],["creature","—"],["to","—"],["be","—"],["here","—"]],
+  [["She","Seguía"],["was","llorando"],["still","sin parar"],["in","y formó"],["tears","un gran charco"],["as","a su alrededor"],["she","de unos"],["sat","diez centímetros"],["there","de profundidad"],["having","que llegaba"],["formed","hasta la mitad"],["a","de la sala"],["pool","—"],["about","—"],["four","—"],["inches","—"],["deep","—"]],
+  [["After","Después"],["a","de un"],["time","tiempo"],["she","oyó"],["heard","un"],["a","pequeño"],["little","ruido"],["pattering","de pasos"],["of","y se apresuró"],["feet","a mirarse"],["in","limpiando"],["the","sus ojos"],["distance","para ver"],["and","qué venía"],["she","—"],["hastened","—"],["to","—"],["look","—"],["that","—"],["way","—"]],
+  [["It","Era"],["was","el Conejo"],["the","Blanco"],["White","que regresaba"],["Rabbit","espléndidamente"],["returning","vestido"],["splendidly","con un par"],["dressed","de guantes"],["with","blancos"],["a","en una mano"],["pair","y un gran"],["of","abanico"],["white","en la otra"],["gloves","iba"],["in","trotando"],["one","muy aprisa"],["hand","y murmurando"],["and","para sí mismo"],["a","—"],["large","—"],["fan","—"],["in","—"],["the","—"],["other","—"]],
+  [["Oh","Oh"],["the","la"],["Duchess","Duquesa"],["the","la"],["Duchess","Duquesa"],["Oh","¡Oh"],["won't","no"],["she","querrá"],["be","furiosa"],["savage","si la"],["if","hago"],["I","esperar"],["have","—"],["kept","—"],["her","—"],["waiting","—"]],
+  [["Alice","Alicia"],["felt","sintió"],["so","tan"],["desperate","desesperada"],["that","que"],["she","estaba"],["was","dispuesta"],["ready","a pedir"],["to","ayuda"],["ask","a cualquiera"],["help","—"],["of","—"],["any","—"],["one","—"]],
+  [["When","Cuando"],["the","el"],["Rabbit","Conejo"],["came","se acercó"],["near","a ella"],["her","Alicia"],["she","empezó"],["began","en voz baja"],["in","un poco"],["a","tímida"],["low","pues"],["timid","aún no"],["voice","sabía"],["If","si"],["you","le"],["please","gustaría"],["sir","—"],["—","—"]],
+  [["The","El"],["Rabbit","Conejo"],["started","se sobresaltó"],["violently","violentamente"],["dropped","dejó caer"],["the","el abanico"],["white","blanco"],["kid","y los"],["gloves","guantes de cabritilla"],["and","y"],["the","se alejó"],["fan","corriendo"],["and","hacia la oscuridad"],["scurried","tan rápido"],["away","como pudo"],["into","—"],["the","—"],["darkness","—"],["as","—"],["hard","—"],["as","—"],["he","—"],["could","—"],["go","—"]],
+  [["Alice","Alicia"],["took","tomó"],["up","el abanico"],["the","y los guantes"],["fan","y como"],["and","hacía"],["gloves","mucho calor"],["and","en la sala"],["as","se abanicó"],["the","mientras hablaba"],["hall","—"],["was","—"],["very","—"],["hot","—"],["she","—"],["kept","—"],["fanning","—"],["herself","—"],["all","—"],["the","—"],["time","—"],["she","—"],["went","—"],["on","—"],["talking","—"]],
+  [["Dear","Querido"],["dear","querido"],["How","qué"],["queer","extraño"],["everything","es todo"],["is","hoy"],["to","y"],["day","ayer"],["And","las cosas"],["yesterday","iban"],["things","tan normalmente"],["went","me pregunto"],["on","si habré"],["just","cambiado"],["as","durante la noche"],["usual","—"]],
+  [["Let","Déjame"],["me","pensar"],["think","¿era yo"],["was","la misma"],["I","cuando me levanté"],["the","esta mañana"],["same","creo"],["when","que me acuerdo"],["I","de haberme sentido"],["got","un poco distinta"],["up","pero si no"],["this","soy la misma"],["morning","¿quién soy"],["I","entonces"],["almost","ésa es"],["think","la gran pregunta"],["I","—"],["can","—"],["remember","—"],["feeling","—"],["a","—"],["little","—"],["different","—"]],
+  [["I","Me pregunto"],["wonder","si me han"],["if","cambiado"],["I","por una"],["have","de mis amigas"],["been","durante la noche"],["changed","si es así"],["in","la próxima pregunta es"],["the","¿quién soy yo"],["night","necesito averiguarlo"],["—","—"]],
+  [["I","Voy a"],["am","intentar"],["going","recordar"],["to","todo lo que sabía"],["try","esta mañana"],["whether","a ver si puedo"],["I","cuatro por cuatro"],["know","son ocho"],["all","cuatro por cinco"],["the","son doce"],["things","cuatro por seis"],["I","son trece"],["used","oh"],["to","qué número"],["know","tan raro"],["—","—"]],
+  [["Let","Déjame"],["me","ver"],["see","cuatro veces"],["four","cinco son doce"],["times","cuatro veces"],["five","seis son trece"],["are","y cuatro veces"],["twelve","siete son"],["four","catorce"],["times","oh"],["six","nunca"],["are","llegaré"],["thirteen","a veinte"],["and","así"],["four","—"],["times","—"],["seven","—"],["are","—"],["oh","—"],["dear","—"]]
+];
+
+const textEN = document.getElementById('textEN');
+const esTrack = document.getElementById('esTrack');
+const esStrip = document.getElementById('esStrip');
+const main = document.getElementById('main');
+let allWords = [], esWords = [], activeIdx = null, clickTimer = null;
+
+PARAGRAPHS.forEach((para) => {
+  const p = document.createElement('p');
+  p.className = 'para';
+  para.forEach(([en, ...esArr]) => {
+    const globalIdx = allWords.length;
+    const span = document.createElement('span');
+    span.className = 'w';
+    span.textContent = en;
+    span.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (clickTimer) { clearTimeout(clickTimer); clickTimer = null; return; }
+      clickTimer = setTimeout(() => { clickTimer = null; activateWord(globalIdx, span, esArr.join(' ')); }, 250);
+    });
+    span.addEventListener('dblclick', (e) => {
+      e.stopPropagation();
+      if (clickTimer) { clearTimeout(clickTimer); clickTimer = null; }
+      activateWord(globalIdx, span, esArr.join(' '));
+      showTooltip(span, esArr.join(' '));
+    });
+    p.appendChild(span);
+    p.appendChild(document.createTextNode(' '));
+    allWords.push({ span, es: esArr.join(' '), globalIdx });
+  });
+  textEN.appendChild(p);
+});
+
+allWords.forEach(({ es }) => {
+  const span = document.createElement('span');
+  span.className = 'es-word';
+  span.textContent = es + ' ';
+  esTrack.appendChild(span);
+  esWords.push(span);
+});
+
+function activateWord(idx, enSpan, es) {
+  if (activeIdx !== null) {
+    allWords[activeIdx].span.classList.remove('active');
+    if (esWords[activeIdx]) esWords[activeIdx].classList.remove('highlight');
+  }
+  document.querySelectorAll('.tooltip').forEach(t => t.remove());
+  esStrip.classList.add('visible');
+  main.classList.add('strip-visible');
+  enSpan.classList.add('active');
+  if (esWords[idx]) esWords[idx].classList.add('highlight');
+  activeIdx = idx;
+  scrollStrip(idx);
+}
+
+function scrollStrip(idx) {
+  const esWord = esWords[idx];
+  if (!esWord) return;
+  const offset = esWord.offsetLeft - esStrip.offsetWidth / 2 + esWord.offsetWidth / 2;
+  esTrack.style.transform = `translateX(${-offset}px)`;
+}
+
+function showTooltip(span, text) {
+  document.querySelectorAll('.tooltip').forEach(t => t.remove());
+  const tip = document.createElement('div');
+  tip.className = 'tooltip';
+  tip.textContent = text;
+  span.style.position = 'relative';
+  span.appendChild(tip);
+  setTimeout(() => tip.remove(), 3000);
+}
+
+function toggleMenu() {
+  document.getElementById('chaptersMenu').classList.toggle('open');
+}
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.chapters-btn') && !e.target.closest('.chapters-menu')) {
+    document.getElementById('chaptersMenu').classList.remove('open');
+  }
+  if (!e.target.closest('.w')) {
+    esStrip.classList.remove('visible');
+    main.classList.remove('strip-visible');
+    document.querySelectorAll('.tooltip').forEach(t => t.remove());
+    if (activeIdx !== null) {
+      allWords[activeIdx].span.classList.remove('active');
+      if (esWords[activeIdx]) esWords[activeIdx].classList.remove('highlight');
+      activeIdx = null;
+    }
+  }
+});
+</script>
+</body>
+</html>
